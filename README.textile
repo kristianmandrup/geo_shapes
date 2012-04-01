@@ -6,19 +6,19 @@ h2. Status update
 
 Work in progress...
 
-Trying to fit this into my other geo gems, such as geo_point, geo_vectors etc.
+Trying to refactor it to leverage geo- gems such as: geo_point, geo_vectors etc.
 
 h2. Usage
 
 <pre>
-circle = GeoCircle.new [10, 12], 5.km
-circle = GeoCircle.new :center => [10, 12], :radius => 5.km
+circle = Geo::Circle.new [10, 12], 5.km
+circle = Geo::Circle.new :center => [10, 12], :radius => 5.km
 
-rect = GeoRect.new [10, 12], [17, 18]
-rect = GeoRect.new [10, 12], [4, -3].vector 
+rect = Geo::Rect.new [10, 12], [17, 18]
+rect = Geo::Rect.new [10, 12], [4, -3].vector 
 
-rect = GeoSquare.new [10, 12], 2.km
-rect = GeoSquare.new :center => [10, 12], :radius => 2.km
+rect = Geo::Square.new [10, 12], 2.km
+rect = Geo::Square.new :center => [10, 12], :radius => 2.km
 
 rect.overlaps? point
 rect.overlaps_any? *points
@@ -27,13 +27,15 @@ rect.overlaps_all? *points
 # add vector to upper left point
 rect.upper_left + [2, -1].vector
 
-circle.random_point_within
-circle.random_points_within(5) 
+circle.random_points
+circle.random_points(5)
   => [5 points]
 
-rect.random_points_within(2)
+rect.random_points(2)
 
 </pre>
+
+Now also includes Radius functionality extracted from GeoMagic.
 
 h2. Contributing to geo_shapes
  
@@ -45,7 +47,7 @@ h2. Contributing to geo_shapes
 * Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
 * Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
-== Copyright
+h2. Copyright
 
 Copyright (c) 2011 Kristian Mandrup. See LICENSE.txt for
 further details.

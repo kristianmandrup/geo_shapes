@@ -11,9 +11,6 @@ GEM
       i18n
       require_all (~> 1.2.0)
       sugar-high (~> 0.4.6.3)
-    geo_point (0.2.5)
-      geo_calc (~> 0.7.5)
-      geo_units (~> 0.2.1)
     geo_units (0.2.4.1)
       sugar-high (~> 0.4.6.2)
     geo_vectors (0.6.2)
@@ -58,7 +55,6 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 1.1.0)
-  geo_point
   geo_vectors
   jeweler (>= 1.6.2)
   rspec (>= 2.3.0)

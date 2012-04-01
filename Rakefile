@@ -20,10 +20,6 @@ Jeweler::Tasks.new do |gem|
   gem.email = "kmandrup@gmail.com"
   gem.authors = ["Kristian Mandrup"]
   # Include your dependencies below. Runtime dependencies are required when using your gem,
-  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)
-  #  gem.add_runtime_dependency 'jabber4r', '> 0.1'
-  #  gem.add_development_dependency 'rspec', '> 1.2.3'
-  
-  gem.add_runtime_dependency 'party_proxy', '~> 0.2.2'  
+  # and development dependencies are only needed for development (ie running rake tasks, tests, etc)  
 end
 Jeweler::RubygemsDotOrgTasks.new

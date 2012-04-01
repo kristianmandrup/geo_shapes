@@ -20,17 +20,21 @@ Gem::Specification.new do |s|
     ".document",
     ".rspec",
     "Gemfile",
+    "Gemfile.lock",
     "LICENSE.txt",
     "README.textile",
     "Rakefile",
     "VERSION",
+    "geo_shapes.gemspec",
     "lib/geo_shapes.rb",
-    "lib/geo_shapes/calculations.rb",
-    "lib/geo_shapes/extensions/geo_point.rb",
-    "lib/geo_shapes/extensions/radius.rb",
-    "lib/geo_shapes/extensions/vector.rb",
+    "lib/geo_shapes/radius.rb",
+    "lib/geo_shapes/radius/circular.rb",
+    "lib/geo_shapes/radius/random/points.rb",
+    "lib/geo_shapes/radius/random/radiant.rb",
+    "lib/geo_shapes/radius/rectangular.rb",
+    "lib/geo_shapes/radius/square.rb",
+    "lib/geo_shapes/radius/within_radius.rb",
     "lib/geo_shapes/shape.rb",
-    "lib/geo_shapes/shape/box.rb",
     "lib/geo_shapes/shape/circle.rb",
     "lib/geo_shapes/shape/rectangle.rb",
     "lib/geo_shapes/shape/square.rb",
@@ -51,30 +55,24 @@ Gem::Specification.new do |s|
     s.specification_version = 3
 
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
-      s.add_runtime_dependency(%q<geo_point>, [">= 0"])
       s.add_runtime_dependency(%q<geo_vectors>, [">= 0"])
       s.add_development_dependency(%q<rspec>, [">= 2.3.0"])
       s.add_development_dependency(%q<bundler>, ["~> 1.1.0"])
       s.add_development_dependency(%q<jeweler>, [">= 1.6.2"])
       s.add_development_dependency(%q<simplecov>, [">= 0.5"])
-      s.add_runtime_dependency(%q<party_proxy>, ["~> 0.2.2"])
     else
-      s.add_dependency(%q<geo_point>, [">= 0"])
       s.add_dependency(%q<geo_vectors>, [">= 0"])
       s.add_dependency(%q<rspec>, [">= 2.3.0"])
       s.add_dependency(%q<bundler>, ["~> 1.1.0"])
       s.add_dependency(%q<jeweler>, [">= 1.6.2"])
       s.add_dependency(%q<simplecov>, [">= 0.5"])
-      s.add_dependency(%q<party_proxy>, ["~> 0.2.2"])
     end
   else
-    s.add_dependency(%q<geo_point>, [">= 0"])
     s.add_dependency(%q<geo_vectors>, [">= 0"])
     s.add_dependency(%q<rspec>, [">= 2.3.0"])
     s.add_dependency(%q<bundler>, ["~> 1.1.0"])
     s.add_dependency(%q<jeweler>, [">= 1.6.2"])
     s.add_dependency(%q<simplecov>, [">= 0.5"])
-    s.add_dependency(%q<party_proxy>, ["~> 0.2.2"])
   end
 end
 
