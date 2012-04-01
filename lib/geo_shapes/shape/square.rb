@@ -1,14 +1,14 @@
-require 'geo_magic/shape/box'
+require 'geo_shapes/shape'
 
-module GeoShape
+module Geo
   class Square < Rectangle
     attr_reader :distance
 
-    include GeoMagic::Calculations
+    include Geo::Calculations
 
     def initialize point, size
-      raise ArgumentError, "First argument must be a GeoPoint" if !point.kind_of?(GeoPoint)
-      raise ArgumentError, "Second argument must be a GeoDistance or a GeoVector" if !size.any_kind_of?(GeoDistance, GeoVector)
+      raise ArgumentError, "First argument must be a Geo::Point" if !point.kind_of?(Geo::Point)
+      raise ArgumentError, "Second argument must be a Geo::Distance or a Geo::Vector" if !size.any_kind_of?(Geo::Distance, Geo::Vector)
       @point_a = point
           
       if size.kind_of?(GeoMagic::Distance)
@@ -70,7 +70,15 @@ module GeoShape
     private
 
     def arg_check! p1, p2
-      raise ArgumentError, "Rectangle must be created from two Points or a Point and a Vector" if !([p1, p2].only_kinds_of?(GeoMagic::Point) || (p1.kind_of?(GeoMagic::Point) && p2.kind_of?(GeoMagic::Vector))
+      raise ArgumentError, "Rectangle must be created from either: #{valid_args}" unless valid_args?(p1, p2)
     end    
+
+    def valid_args
+      "(Geo:Point, Geo:Point) or (Geo::Point, Geo::Vector)"
+    end
+
+    def valid_args? p1, p2
+      [p1, p2].only_kinds_of?(Geo::Point) || (p1.kind_of?(Geo::Point) && p2.kind_of?(Geo::Vector)
+    end
   end
 end

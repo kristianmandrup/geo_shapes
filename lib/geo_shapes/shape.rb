@@ -1,5 +1,5 @@
-module GeoShape
-  class AbstractShape
+module Geo
+  class Shape
     # is point within the square
     def within? point
       raise "Subclass should implement this"

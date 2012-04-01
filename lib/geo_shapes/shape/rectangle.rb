@@ -1,6 +1,6 @@
 require 'geo_shapes/shape'
 
-module GeoShape
+module Geo
   class Rectangle < AbstractShape
     attr_accessor :point_b
 
@@ -27,9 +27,35 @@ module GeoShape
       @upper_right = nil
     end
 
+    def vector
+      raise "Geo::Vector requires use of 'geo_vector' gem" if !defined?(Geo::Vector)
+      Geo::Vector.new(point_a, point_b)
+    end
+
+    # create rectangle within radius of point
+    # in this case the radius has a vertical and horizontal radius
+    def create_within radius
+      Geo::Radius::Rectangular.create_from self
+    end
+
+    def upper_left
+      Geo::Point.new left_lat(point_a, point_b), top_long(point_a, point_b)
+    end
+
+    def lower_left
+      Geo::Point.new left_lat(point_a, point_b), bot_long(point_a, point_b)
+    end
+
+    def lower_right
+      Geo::Point.new right_lat(point_a, point_b), bot_long(point_a, point_b)
+    end
+
+    def upper_right
+      Geo::Point.new right_lat(point_a, point_b), top_long(point_a, point_b)
+    end
 
     def self.create_from_coords lat1, long1, lat2, long2
-      self.new GeoPoint.new(lat1, long1), GeoMagic::Point.new(lat2, long2)
+      self.new Geo::Point.new(lat1, long1), Geo::Point.new(lat2, long2)
     end 
 
     # is point contained within the rectangle

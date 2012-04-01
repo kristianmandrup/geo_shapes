@@ -1,7 +1,7 @@
-require 'geo_shape/shape'
+require 'geo_shapes/shape'
 
-module GeoShape
-  class Circle < AbstractShape
+module Geo
+  class Circle < Shape
     attr_reader :radius
 
     proxy_accessor_for :radius
@@ -19,6 +19,15 @@ module GeoShape
     def distance
       radius.distance
     end      
+
+    # create random new circle within radius of circle
+    # in this case the radius has a vertical and horizontal radius
+    def create_within radius
+      random_circle = random_within
+      diff_distance = Geo::Distance.new(self.center, random_circle.center)
+      max_dist_within_circle = self.distance - diff_distance
+      Geo::Radius::Circle.new random_circle.center, max_dist_within_circle.random_within
+    end
 
     # Creates a new random circle of same the size within a given distance
     # Use radius method?
